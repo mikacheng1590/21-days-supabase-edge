@@ -62,6 +62,9 @@ Deno.serve(async (req) => {
       }
     })
 
+    console.log('emailSentData: ', emailSentData)
+    console.log('status: ', status)
+
     if (status !== 200) {
       throw new Error(emailSentData.error)
     }
@@ -96,7 +99,6 @@ Deno.serve(async (req) => {
       .from(TABLE_EMAIL_NOTIFICATION)
       .upsert(rowsToUpdate)
 
-    console.log('updatedData: ', updatedData)
     console.log('updateError: ', updateError)
   }
 
