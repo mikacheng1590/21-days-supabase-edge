@@ -35,8 +35,6 @@ Deno.serve(async (req) => {
       })
     }
 
-    console.log('data: ', data)
-
     emailData = data
 
     const expiredProjects = emailData.filter(record => record.content === PROJECT_EXPIRED).map(record => {
@@ -55,7 +53,6 @@ Deno.serve(async (req) => {
       }
     })
 
-    console.log('name: ', Deno.env.get('EMAIL_SENDING_USERNAME'))
     const { data: emailSentData, status } = await axios.post(Deno.env.get('EMAIL_SENDING_URL'), {
       bcc: [...expiredProjects, ...missedEntries],
     }, {
